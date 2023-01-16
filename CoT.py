@@ -3,6 +3,7 @@ import uuid
 import xml.etree.ElementTree as ET
 import socket
 import logging
+import xml.dom.minidom
 
 logger = logging.getLogger("django")
 
@@ -73,13 +74,24 @@ class CursorOnTarget:
             "ce": "10",    #unit["ce"],
             "le": "10"     #unit["le"]1
         }
-    
+
+
         cot = ET.Element('event', attrib=evt_attr)
         ET.SubElement(cot, 'detail')
         ET.SubElement(cot,'point', attrib=pt_attr)
+
+
+
+
     
         cot_xml = '<?xml version="1.0" standalone="yes"?>' + ET.tostring(cot).decode()
+
+        fp = open('cot.xml', 'w')
+        fp.write(cot_xml)
+
         cot_xml = cot_xml.encode("UTF-8")
+
+
         # cot_xml = ET.tostring(cot)
         return cot_xml
 
