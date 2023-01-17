@@ -71,20 +71,65 @@ class CursorOnTarget:
 
         pt_attr = {
             "lat": str(unit["lat"]),
-            "lon":  str(unit["lon"]),
+            "lon": str(unit["lon"]),
             "hae": "0",   #unit["hae"],
-            "ce": "10",    #unit["ce"],
-            "le": "10"     #unit["le"],
+            "ce": "10",   #unit["ce"],
+            "le": "10"    #unit["le"],
         }
+        #nineLine ip
+        ip_attr = {
+            "ipLat":"23.5",
+            "ipLon":"123.5",
+            "ipHae":"200",
+            "ipDis":"23.5km",
+            "ipThg":"134.5"
+        }
+
+        #nineLine tgtInfo
+        tgtInfo_attr = {
+            "tgtDescription":"运动坦克"
+        }
+
+        #nineLine mark
+        mark_attr = {
+            "typeMark":"激光",
+            "code":"1-1"
+        }
+
+        #nineLine friendlies
+        friendlies_attr = {
+            "direction":"35",
+            "distance":"65km"
+        }
+
+        #nineLine egress
+        egress_attr = {
+            "epLat":"23.7",
+            "epLon":"134.5",
+            "epHae":"2000",
+            "direction":"北"
+        }
+
+
+        #nineLine markType
         # CoT XML文件生成
         # 创建根节点
         root = ET.Element('event', attrib=evt_attr)
-        tree = ET.ElementTree(root)
-
-
+        # tree = ET.ElementTree(root)
 
         detail = ET.SubElement(root, 'detail')
         nineLine = ET.SubElement(detail,'nineLine')
+        #line1-line3
+        ip = ET.SubElement(nineLine,'ip',attrib=ip_attr)
+        #line5
+        tgtInfo = ET.SubElement(nineLine,'tgtInfo',attrib=tgtInfo_attr)
+        #line7
+        mark = ET.SubElement(nineLine,'mark',attrib=mark_attr)
+        #line8
+        friendlies = ET.SubElement(nineLine,'friendlies',attrib=friendlies_attr)
+        #line9
+        egress = ET.SubElement(nineLine,'egress',attrib=egress_attr)
+
 
         point = ET.SubElement(root,'point', attrib=pt_attr)
 
@@ -96,10 +141,10 @@ class CursorOnTarget:
 
         # CoT XML文件保存
         fp = open('cot.xml', 'w')
-        fp.write(cot_xml)
+        # fp.write(cot_xml)
         # encoding = ""
-        # dom = minidom.parseString(cot_xml)
-        # dom.writexml(fp, "\t", "\n", "")
+        dom = minidom.parseString(cot_xml)
+        dom.writexml(fp, addindent="",newl= "\n")
 
         cot_xml = cot_xml.encode("UTF-8")
 

@@ -1,6 +1,14 @@
-<?xml version="1.0" standalone="yes"?>
-<event version="2.0" uid="Nerd Herd" time="2023-01-17T02:02:04Z" start="2023-01-17T02:02:04Z" stale="2023-01-17T02:03:04Z" type="a-h-G-U-C">
+<?xml version="1.0" ?>
+<event version="2.0" uid="Nerd Herd" time="2023-01-17T06:22:13Z" start="2023-01-17T06:22:13Z"
+       stale="2023-01-17T06:23:13Z" type="a-h-G-U-C">
     <detail>
-        <nineLine />
-    </detail><point lat="27.957561" lon="-82.436287" hae="0" ce="10" le="10" />
+        <nineLine>
+            <ip ipLat="23.5" ipLon="123.5" ipHae="200" ipDis="23.5km" ipThg="134.5"/>
+            <tgtInfo tgtDescription="运动坦克"/>
+            <mark typeMark="激光" code="1-1"/>
+            <friendlies direction="35" distance="65km"/>
+            <egress epLat="23.7" epLon="134.5" epHae="2000" direction="北"/>
+        </nineLine>
+    </detail>
+    <point lat="27.961760999999996" lon="-82.432087" hae="0" ce="10" le="10"/>
 </event>
