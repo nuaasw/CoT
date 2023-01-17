@@ -23,6 +23,8 @@ for i in range(0, 10):
     params["lon"] = params["lon"] + i/10000.0
     # print("Params:\n" + str(params))
     cot = CoT.CursorOnTarget()
+
+
     cot_xml = cot.atoms(params)
 
 
@@ -40,4 +42,4 @@ for i in range(0, 10):
     # else
     # sent = cot.pushUDP(ATAK_IP, ATAK_PORT, cot_xml)
     # print()
-    time.sleep(2)
+    time.sleep(1)

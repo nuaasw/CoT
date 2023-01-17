@@ -1,9 +1,9 @@
 import datetime as dt
 import uuid
 import xml.etree.ElementTree as ET
+from xml.dom import minidom
 import socket
 import logging
-import xml.dom.minidom
 
 logger = logging.getLogger("django")
 
@@ -33,6 +33,8 @@ DIM = {
 }
 
 DATETIME_FMT = "%Y-%m-%dT%H:%M:%SZ"
+
+
 
 class CursorOnTarget:
 
@@ -72,25 +74,34 @@ class CursorOnTarget:
             "lon":  str(unit["lon"]),
             "hae": "0",   #unit["hae"],
             "ce": "10",    #unit["ce"],
-            "le": "10"     #unit["le"]1
+            "le": "10"     #unit["le"],
         }
-
-
-        cot = ET.Element('event', attrib=evt_attr)
-        ET.SubElement(cot, 'detail')
-        ET.SubElement(cot,'point', attrib=pt_attr)
-
+        # CoT XML文件生成
+        # 创建根节点
+        root = ET.Element('event', attrib=evt_attr)
+        tree = ET.ElementTree(root)
 
 
 
-    
-        cot_xml = '<?xml version="1.0" standalone="yes"?>' + ET.tostring(cot).decode()
+        detail = ET.SubElement(root, 'detail')
+        nineLine = ET.SubElement(detail,'nineLine')
 
+        point = ET.SubElement(root,'point', attrib=pt_attr)
+
+        # tree = ET.ElementTree(root)
+        # __self.__indent(root)
+
+        cot_xml = '<?xml version="1.0" standalone="yes"?>' + ET.tostring(root).decode()
+
+
+        # CoT XML文件保存
         fp = open('cot.xml', 'w')
         fp.write(cot_xml)
+        # encoding = ""
+        # dom = minidom.parseString(cot_xml)
+        # dom.writexml(fp, "\t", "\n", "")
 
         cot_xml = cot_xml.encode("UTF-8")
-
 
         # cot_xml = ET.tostring(cot)
         return cot_xml
