@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="event" type="eventType"/>
+  <xs:complexType name="ipType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="ipLat"/>
+        <xs:attribute type="xs:string" name="ipLon"/>
+        <xs:attribute type="xs:string" name="ipHae"/>
+        <xs:attribute type="xs:string" name="ipDis"/>
+        <xs:attribute type="xs:string" name="ipThg"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tgtInfoType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="tgtDescription"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="markType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="typeMark"/>
+        <xs:attribute type="xs:string" name="code"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="friendliesType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="direction"/>
+        <xs:attribute type="xs:string" name="distance"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="egressType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="epLat"/>
+        <xs:attribute type="xs:string" name="epLon"/>
+        <xs:attribute type="xs:string" name="epHae"/>
+        <xs:attribute type="xs:string" name="direction"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="nineLineType">
+    <xs:sequence>
+      <xs:element type="ipType" name="ip"/>
+      <xs:element type="tgtInfoType" name="tgtInfo"/>
+      <xs:element type="markType" name="mark"/>
+      <xs:element type="friendliesType" name="friendlies"/>
+      <xs:element type="egressType" name="egress"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detailType">
+    <xs:sequence>
+      <xs:element type="nineLineType" name="nineLine"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pointType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="lat"/>
+        <xs:attribute type="xs:string" name="lon"/>
+        <xs:attribute type="xs:string" name="hae"/>
+        <xs:attribute type="xs:string" name="ce"/>
+        <xs:attribute type="xs:string" name="le"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="eventType">
+    <xs:sequence>
+      <xs:element type="detailType" name="detail"/>
+      <xs:element type="pointType" name="point"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="version"/>
+    <xs:attribute type="xs:string" name="uid"/>
+    <xs:attribute type="xs:string" name="time"/>
+    <xs:attribute type="xs:string" name="start"/>
+    <xs:attribute type="xs:string" name="stale"/>
+    <xs:attribute type="xs:string" name="type"/>
+  </xs:complexType>
+</xs:schema>
